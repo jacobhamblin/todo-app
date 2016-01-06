@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "todo app react redux",
   "main": "index.html",
+  "repository": "https://github.com/jacobhamblin/todo-app.git",
   "dependencies": {
     "babel-core": "^6.3.26",
     "css-loader": "^0.23.1",
