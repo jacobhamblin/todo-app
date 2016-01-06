@@ -1,0 +1,35 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "todo app react redux",
+  "main": "index.html",
+  "dependencies": {
+    "babel-core": "^6.3.26",
+    "css-loader": "^0.23.1",
+    "redux": "^3.0.5",
+    "babel-loader": "^6.2.1",
+    "react": "^0.14.5",
+    "node-sass": "^3.4.2",
+    "sass-loader": "^3.1.2",
+    "webpack": "^1.12.9",
+    "style-loader": "^0.13.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.2.3",
+    "babel-loader": "^6.2.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.0",
+    "node-sass": "^3.4.2",
+    "path": "^0.12.7",
+    "react": "^0.14.5",
+    "redux": "^3.0.5",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jacob hamblin",
+  "license": "ISC"
+}
