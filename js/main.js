@@ -1,4 +1,6 @@
 import Redux from 'redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 const todo = (state, action) => {
   switch (action.type) {
@@ -9,7 +11,7 @@ const todo = (state, action) => {
         completed: false
       };
     case 'TOGGLE_TODO':
-      if (state.id !=== action.id) {
+      if (state.id !== action.id) {
         return state;
       }
 
@@ -51,11 +53,51 @@ const visibilityFilter = (
   }
 };
 
-const { combineReducers } = Redux;
+import { combineReducers } from 'redux';
 const todoApp = combineReducers({
   todos,
   visibilityFilter
 });
 
-const { createStore } = Redux;
+import { createStore } from 'redux';
 const store = createStore(todoApp);
+
+import { Component } from 'react';
+
+let nextTodoId = 0;
+class TodoApp extends Component {
+  render() {
+    return (
+      <div>
+        <button onClick={() => {
+          store.dispatch({
+            type: 'ADD_TODO',
+            text: 'Test',
+            id: nextTodoId++
+          });
+        }}>
+          Add Todo
+        </button>
+        <ul>
+          {this.props.todos.map(todo =>
+            <li key={todo.id}>
+              {todo.text}
+            </li>
+          )}
+        </ul>
+      </div>
+    )
+  }
+}
+
+const render = () => {
+  ReactDOM.render(
+    <TodoApp
+      todos={store.getState().todos}
+    />,
+    document.querySelectorAll('#root')[0]
+  )
+};
+
+store.subscribe(render);
+render();
