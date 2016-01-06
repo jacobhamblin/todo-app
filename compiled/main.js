@@ -143,17 +143,23 @@
 	  _createClass(TodoApp, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement('input', { ref: function ref(node) {
+	            _this2.input = node;
+	          } }),
 	        _react2.default.createElement(
 	          'button',
 	          { onClick: function onClick() {
 	              store.dispatch({
 	                type: 'ADD_TODO',
-	                text: 'Test',
+	                text: _this2.input.value,
 	                id: nextTodoId++
 	              });
+	              _this2.input.value = '';
 	            } },
 	          'Add Todo'
 	        ),
