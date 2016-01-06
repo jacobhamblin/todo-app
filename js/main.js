@@ -36,6 +36,16 @@ const todos = (state = [], action) => {
       return state.map(t =>
         todo(t, action)
       );
+    case 'REMOVE_TODO':
+      let index = -1;
+      for (let i = 0; i < state.length; i++) {
+        state[i].id === action.id ? index = i : null;
+      }
+
+      return [
+        ...state.slice(0, index),
+        ...state.slice(index + 1)
+      ]
     default:
       return state;
   }
@@ -86,6 +96,22 @@ class TodoApp extends Component {
           {this.props.todos.map(todo =>
             <li key={todo.id}>
               {todo.text}
+              <button onClick={() => {
+                store.dispatch({
+                  type: 'TOGGLE_TODO',
+                  id: todo.id
+                });
+              }}>
+                toggle completed
+              </button>
+              <button onClick={() => {
+                store.dispatch({
+                  type: 'REMOVE_TODO',
+                  id: todo.id
+                });
+              }}>
+                del
+              </button>
             </li>
           )}
         </ul>
@@ -95,6 +121,7 @@ class TodoApp extends Component {
 }
 
 const render = () => {
+  console.log(store.getState())
   ReactDOM.render(
     <TodoApp
       todos={store.getState().todos}

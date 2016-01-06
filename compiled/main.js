@@ -105,6 +105,13 @@
 	      return state.map(function (t) {
 	        return todo(t, action);
 	      });
+	    case 'REMOVE_TODO':
+	      var index = -1;
+	      for (var i = 0; i < state.length; i++) {
+	        state[i].id === action.id ? index = i : null;
+	      }
+
+	      return [].concat(_toConsumableArray(state.slice(0, index)), _toConsumableArray(state.slice(index + 1)));
 	    default:
 	      return state;
 	  }
@@ -170,7 +177,27 @@
 	            return _react2.default.createElement(
 	              'li',
 	              { key: todo.id },
-	              todo.text
+	              todo.text,
+	              _react2.default.createElement(
+	                'button',
+	                { onClick: function onClick() {
+	                    store.dispatch({
+	                      type: 'TOGGLE_TODO',
+	                      id: todo.id
+	                    });
+	                  } },
+	                'toggle completed'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { onClick: function onClick() {
+	                    store.dispatch({
+	                      type: 'REMOVE_TODO',
+	                      id: todo.id
+	                    });
+	                  } },
+	                'del'
+	              )
 	            );
 	          })
 	        )
@@ -182,6 +209,7 @@
 	})(_react.Component);
 
 	var render = function render() {
+	  console.log(store.getState());
 	  _reactDom2.default.render(_react2.default.createElement(TodoApp, {
 	    todos: store.getState().todos
 	  }), document.querySelectorAll('#root')[0]);
